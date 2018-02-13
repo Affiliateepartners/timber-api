@@ -18,7 +18,7 @@ class TimberApi
         ]);
     }
 
-    public function setAuthToken($token)
+    public function setAuthToken(string $token)
     {
         $this->token = $token;
     }
@@ -40,7 +40,7 @@ class TimberApi
         return $this->http_client->post($path,  $this->prepareRequestOptions($body));
     }
 
-    private function prepareRequestOptions(string $body = null)
+    private function prepareRequestOptions(string $body = null): array
     {
         return [
             'body'    => $body,
@@ -48,7 +48,7 @@ class TimberApi
         ];
     }
 
-    private function prepareRequestHeaders()
+    private function prepareRequestHeaders(): array
     {
         return [
             'Authorization' => 'Basic ' . base64_encode($this->token),
