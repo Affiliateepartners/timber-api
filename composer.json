@@ -1,0 +1,20 @@
+{
+    "name": "liteweb/timber-api",
+    "description": "PHP Timber API Implementation",
+    "type": "library",
+    "require": {
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Michal Kluczek",
+            "email": "michal.kluczek@liteweb.io"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Liteweb\\Timber" : "src"
+        }
+    }
+}
