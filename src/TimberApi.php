@@ -1,6 +1,6 @@
 <?php
 
-namespace Liteweb\Timber\TimberApi;
+namespace Liteweb\TimberApi;
 
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;

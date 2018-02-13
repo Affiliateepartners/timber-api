@@ -14,7 +14,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Liteweb\\Timber\\" : "src"
+            "Liteweb\\TimberApi\\" : "src"
         }
     }
 }

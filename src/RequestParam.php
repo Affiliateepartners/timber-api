@@ -1,6 +1,6 @@
 <?php
 
-namespace Liteweb\Timber\TimberApi;
+namespace Liteweb\TimberApi;
 
 final class RequestParam
 {
