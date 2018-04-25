@@ -137,7 +137,10 @@ class TimberApi
             'response_code' => $response->getStatusCode()
         ]);
 
-        \Illuminate\Support\Facades\Redis::set("ok_{$request_id}", json_encode($data));
+        if($data['responses'][$data['attempts']] > 1)
+        {
+            \Illuminate\Support\Facades\Redis::set("ok_{$request_id}", json_encode($data));
+        }
         \Illuminate\Support\Facades\Redis::del($request_id);
     }
 
