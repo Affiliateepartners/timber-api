@@ -91,6 +91,7 @@ class TimberApi
         return [
             'body'    => $body,
             'headers' => $this->prepareRequestHeaders(),
+            'timeout' => 60,
         ];
     }
 
