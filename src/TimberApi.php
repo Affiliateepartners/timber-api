@@ -91,13 +91,12 @@ class TimberApi
         return [
             'body'    => $body,
             'headers' => $this->prepareRequestHeaders(),
-            'timeout' => 1
         ];
     }
 
     private function logJsonAttempt(string $json, string $request_id)
     {
-        $record     = \Redis::get($request_id);
+        $record     = \Illuminate\Support\Facades\Redis::get($request_id);
 
         if(!$record)
         {
@@ -116,30 +115,30 @@ class TimberApi
         $data['attempts']++;
         $data['responses'][$data['attempts']] = null;
 
-        \Redis::set($request_id, json_encode($data));
+        \Illuminate\Support\Facades\Redis::set($request_id, json_encode($data));
     }
 
     private function logError($data, $request_id)
     {
-        $record  = \Redis::get($request_id);
+        $record  = \Illuminate\Support\Facades\Redis::get($request_id);
         $olddata = json_decode($record, true);
 
         $olddata['responses'][$olddata['attempts']] = json_encode($data);
 
-        \Redis::set("{$request_id}", json_encode($olddata));
+        \Illuminate\Support\Facades\Redis::set("{$request_id}", json_encode($olddata));
     }
 
     private function logSuccess($response, $request_id)
     {
-        $record = \Redis::get($request_id);
+        $record = \Illuminate\Support\Facades\Redis::get($request_id);
         $data  = json_decode($record, true);
 
         $data['responses'][$data['attempts']] = json_encode([
             'response_code' => $response->getStatusCode()
         ]);
 
-        \Redis::set("ok_{$request_id}", json_encode($data));
-        \Redis::del($request_id);
+        \Illuminate\Support\Facades\Redis::set("ok_{$request_id}", json_encode($data));
+        \Illuminate\Support\Facades\Redis::del($request_id);
     }
 
     private function prepareRequestHeaders(): array
