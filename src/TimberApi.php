@@ -61,7 +61,7 @@ class TimberApi
 
             $data = [
                 'msg' => $e->getMessage(),
-                // 'body' => (string)$response->getContents(),
+                'body' => (string)$response->getContents(),
             ];
 
             $this->logError($data, $request_id);
@@ -103,8 +103,8 @@ class TimberApi
             $data = [
                 'attempts' => 0,
                 'time' => \Carbon\Carbon::now()->__toString(),
-                'body' => json_decode($json, true)[0],
                 'responses' => [],
+                'body' => json_decode($json, true)[0],
             ];
         }
         else
